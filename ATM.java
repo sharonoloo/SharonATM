@@ -18,7 +18,7 @@ public class ATM {
 	 
 	        int choice;  
 	 
-
+	        //menu options
 	        System.out.println("1. Balance");
 	        System.out.println("2. Deposit");
 	        System.out.println("3. Withdraw");
@@ -83,14 +83,14 @@ public class ATM {
 			            System.out.println("WITHDRAWAL: ");
 			            System.out.println("Current Balance: " + balance);
 			            amount = input.nextFloat();
+			            //check if they have enough money to withdraw
 			            if(amount > balance || amount == 0)
 			            {
 			                    System.out.println("You have insufficient funds\n\n"); 
 			                    anotherTransaction(); 
 			             } else 
 			                {
-			                    // they have some cash
-			                    // update balance 
+			            	 	//check the transaction amount does not exceed 20k
 			                    if(amount>20000 )
 				                {
 				                	System.out.println("Max Withdrawal cannot exceed 20000 per transaction");
@@ -98,11 +98,13 @@ public class ATM {
 				                	anotherTransaction();
 				                }
 			                    withdrawal=withdrawal+amount;
+			                    //check total withdrawn amount does not exceed 50000
 			                    if(withdrawal>50000)
 			                    {
 			                    	System.out.println("Max Withdrawal cannot exceed 50000 per day");
 			                    	anotherTransaction();
 			                    }
+			                    //deduct the withdrawn amount from the account balance
 			                    balance = balance - amount; 
 			                    System.out.println("You have withdrawn "+amount+" and your new balance is "+balance+"\n");
 			                    ++count1;
