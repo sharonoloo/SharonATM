@@ -1,24 +1,25 @@
-package atm;
+package atmPackage;
 
 import java.util.Scanner;
 
 public class ATM {
-	 	private static Scanner input; 
+	 	private static Scanner input;
+	 	static int choice;
 	 	static int count = 1;
 	 	static int count1 = 1;
 	 	private static float withdrawal;
 	    private static float balance = 0; // initial balance to 0 for everyone
-	    public static void main(String args[]){
+	   
+	    public void main(){
 	        input = new Scanner(System.in);
 	        // call our transaction method here 
 	       transaction();
 	    }
 	 
-	    private static void transaction(){
+	    public  void transaction(){
+	    	
 	 
-	        int choice;  
-	 
-	        //menu options
+	        //menu options 
 	        System.out.println("1. Balance");
 	        System.out.println("2. Deposit");
 	        System.out.println("3. Withdraw");
@@ -53,11 +54,17 @@ public class ATM {
 		                System.out.println("Current Balance: " + balance); 
 		               
 		                deposit = input.nextFloat();
+		                if(deposit<=0)
+		                {
+		                	System.out.println("Only deposit values greater than zero are accepted");
+		                }
+		                else{
 		                if(deposit>40000)
 		                {
 		                	System.out.println("Max Deposit amount of 40000 per transaction surpassed");
 		                	transaction();
 		                }
+		               
 		                // update balance 
 		                balance = deposit + balance;
 		                if(balance>150000)
@@ -71,7 +78,7 @@ public class ATM {
 		                }
 		                anotherTransaction();
 		               
-		                }
+		                }}
 	            	System.out.println("Max Deposit Frequency surpassed");
 	            	
 	            break; 
@@ -95,7 +102,7 @@ public class ATM {
 				                {
 				                	System.out.println("Max Withdrawal cannot exceed 20000 per transaction");
 				                	//Max withdrawal per transaction =20k
-				                	anotherTransaction();
+				                	anotherTransaction(); 
 				                }
 			                    withdrawal=withdrawal+amount;
 			                    //check total withdrawn amount does not exceed 50000
@@ -131,7 +138,7 @@ public class ATM {
 	 
 	    }
 	 
-	    private static void anotherTransaction(){
+	    public void anotherTransaction(){
 	    	   System.out.println("Type 'MENU' and press enter to go back to main menu");
 	    	   String value = input.next();
 	           if(value.equalsIgnoreCase("menu")){
